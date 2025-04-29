@@ -9,7 +9,7 @@ void vulnerable_function() {
 }
 
 int main() {
-    vulnerable_function();
+    vulnerable_function();1
     return 0;
 }
 
