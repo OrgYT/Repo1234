@@ -3,3 +3,9 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQChAW4y8i5fIsV35zWQipTHVNe94PITWTeK9YnJ1Lhe
 
 85a3bd915a3a4ff81faccebdb5d8fca6
  
+
+
+curl -u admin:"#Shravya@12345" -X GET "http://20.82.142.170:8082/artifactory/api/storage/sng-rpm-local/nginx-1.18.0-1.el7.ngx.x86_64.rpm?properties=test-environment-rpm-packages.environments=staging"
+ 
+curl -u admin:"#Shravya@12345" -X GET "http://20.82.142.170:8082/artifactory/api/storage/sng-rpm-local/nginx-1.18.0-1.el7.ngx.x86_64.rpm?properties=test-environment-rpm-packages.environments"
+ 
