@@ -1,24 +1,15 @@
-import java.sql.*;
+#include <stdio.h>
+#include <string.h>
 
-public class VulnerableLogin {
-    public static void main(String[] args) {
-        String username = "admin";  // Simulated user input
-        String password = "' OR '1'='1";  // Malicious input
-
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "password");
-            Statement stmt = conn.createStatement();
-            String query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
-            System.out.println("Executing query: " + query);
-            ResultSet rs = stmt.executeQuery(query);
-
-            if (rs.next()) {
-                System.out.println("Login successful!");
-            } else {
-                System.out.println("Invalid credentials.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+void vulnerable_function() {
+    char buffer[10];
+    printf("Enter some text: ");
+    gets(buffer);  // ❌ Dangerous function
+    printf("You entered: %s\n", buffer);
 }
+
+int main() {
+    vulnerable_function();
+    return 0;
+}
+
