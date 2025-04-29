@@ -1,14 +1,24 @@
-import boto3
+import java.sql.*;
 
-# ❌ Hardcoded credentials (a security risk!)
-aws_access_key_id = "AKIAIOSFODNN7EXAMPLE"
-aws_secret_access_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+public class VulnerableLogin {
+    public static void main(String[] args) {
+        String username = "admin";  // Simulated user input
+        String password = "' OR '1'='1";  // Malicious input
 
-# Using the keys to connect to AWS
-s3 = boto3.client(
-    's3',
-    aws_access_key_id=aws_access_key_id,
-    aws_secret_access_key=aws_secret_access_key
-)
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "password");
+            Statement stmt = conn.createStatement();
+            String query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
+            System.out.println("Executing query: " + query);
+            ResultSet rs = stmt.executeQuery(query);
 
-print("Connected to S3!")
+            if (rs.next()) {
+                System.out.println("Login successful!");
+            } else {
+                System.out.println("Invalid credentials.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
