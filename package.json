@@ -1,0 +1,16 @@
+{
+  "name": "vulnerable-app",
+  "version": "1.0.0",
+  "description": "An app with known vulnerabilities",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "lodash": "4.17.20",           // ✅ Known vulnerability: Prototype Pollution
+    "express": "4.16.0",           // ✅ Older version, contains security issues
+    "jquery": "3.4.0"              // ✅ XSS vulnerability in older jQuery
+  },
+  "author": "Example",
+  "license": "MIT"
+}
