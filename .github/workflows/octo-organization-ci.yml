@@ -15,3 +15,8 @@ jobs:
 
       - name: Run a one-line script
         run: echo Hello from Octo Organization
+        
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13' 
+      - run: python my_script.py
